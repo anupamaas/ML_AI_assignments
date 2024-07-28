@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<!--<h2>Video Feed for Facial Recognition</h2>-->
+<!--<img src="{% url 'video_feed' %}" alt="Video Feed" style="width: 100%;">-->
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Real-time Video Feed</title>
+</head>
+<body>
+    <h1>Real-time Video Feed for Facial Recognition</h1>
+    <img id="video-feed" src="{% url 'video_feed' %}" alt="Video Feed" style="width: 50%;">
+    <br>
+    <button id="stop-button">Stop Video Feed</button>
+
+    <script>
+        // Function to stop video feed
+        document.getElementById('stop-button').onclick = function() {
+            var videoFeed = document.getElementById('video-feed');
+            videoFeed.src = ""; // Clear the source to stop the video feed
+        };
+    </script>
+</body>
+</html>
+{% endblock %}

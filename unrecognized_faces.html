@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Unrecognized Faces</h2>
+<table>
+    <thead>
+        <tr>
+            <th>Date</th>
+            <th>Image</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for face in unrecognized_faces %}
+        <tr>
+            <td>{{ face.date }}</td>
+            <td><img src="{{ face.image_url }}" alt="Unrecognized Face" style="width: 100px;"></td>
+            <td>
+                <form action="{% url 'resolve_unrecognized' face.id %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit">Resolve</button>
+                </form>
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="3">No unrecognized faces found.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
